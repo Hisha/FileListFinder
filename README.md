@@ -1,8 +1,3 @@
-// ========================
-// README.md
-// ========================
-
-
 # File List Finder (Nextcloud App)
 
 
