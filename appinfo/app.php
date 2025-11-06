@@ -1,8 +1,3 @@
-// ========================
-// appinfo/app.php
-// ========================
-
-
 <?php
 namespace OCA\FileListFinder;
 
