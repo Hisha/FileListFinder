@@ -1,8 +1,3 @@
-// ========================
-// lib/Controller/UserController.php
-// ========================
-
-
 <?php
 namespace OCA\FileListFinder\Controller;
 
