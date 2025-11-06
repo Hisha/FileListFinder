@@ -1,8 +1,3 @@
-// ========================
-// lib/Controller/AdminController.php
-// ========================
-
-
 <?php
 namespace OCA\FileListFinder\Controller;
 
