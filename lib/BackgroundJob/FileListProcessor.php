@@ -1,8 +1,3 @@
-// ========================
-// lib/BackgroundJob/FileListProcessor.php
-// ========================
-
-
 <?php
 namespace OCA\FileListFinder\BackgroundJob;
 
