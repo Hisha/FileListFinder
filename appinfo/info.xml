@@ -1,8 +1,4 @@
-// ========================
-// appinfo/info.xml
-// ========================
-
-
+<?xml version="1.0"?>
 <info>
 <id>filelistfinder</id>
 <name>File List Finder</name>
