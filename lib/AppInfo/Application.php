@@ -6,6 +6,7 @@ use OCP\BackgroundJob\IJobList;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
+use OCA\FileListFinder\Controller\UserController;
 use OCA\FileListFinder\BackgroundJob\FileListProcessor;
 
 class Application extends App implements IBootstrap {
@@ -15,8 +16,15 @@ class Application extends App implements IBootstrap {
     }
 
     public function register(IRegistrationContext $context): void {
-        // Future: register services, event listeners
-    }
+    $context->registerService(UserController::class, function($c) {
+        return new \OCA\FileListFinder\Controller\UserController(
+            'filelistfinder',
+            $c->get(\OCP\IRequest::class),
+            $c->get(\OCP\ILogger::class),
+            $c->get(\OCP\BackgroundJob\IJobList::class)
+        );
+    });
+}
 
     public function boot(IBootContext $context): void {
         $jobList = $context->getAppContainer()->get(IJobList::class);
