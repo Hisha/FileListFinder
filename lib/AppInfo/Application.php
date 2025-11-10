@@ -16,7 +16,7 @@ class Application extends App implements IBootstrap {
     }
 
     public function register(IRegistrationContext $context): void {
-        // ✅ Register the UserController (for dependency injection)
+        // No registerRoutes here!
         $context->registerService(UserController::class, function($c) {
             return new UserController(
                 'filelistfinder',
@@ -25,12 +25,9 @@ class Application extends App implements IBootstrap {
                 $c->get(\OCP\BackgroundJob\IJobList::class)
             );
         });
-
-        // ✅ Tell Nextcloud to load your appinfo/routes.php file
-        $context->registerRoutes(__DIR__ . '/../../appinfo/routes.php');
     }
 
     public function boot(IBootContext $context): void {
-        // You don’t need to register jobs here anymore
+        // Optional job registration
     }
 }
