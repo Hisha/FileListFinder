@@ -28,7 +28,8 @@ class Application extends App implements IBootstrap {
 }
 
     public function boot(IBootContext $context): void {
-        // No longer needed to register job here — queued jobs are submitted by controllers
-        \OC::$server->getLogger()->info('[FileListFinder] App booted');
+        /** @var \OCP\ILogger $logger */
+        $logger = $context->getAppContainer()->get(\OCP\ILogger::class);
+        $logger->info('[FileListFinder] App booted');
     }
 }
