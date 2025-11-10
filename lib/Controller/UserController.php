@@ -6,6 +6,8 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\ILogger;
 use OCP\IRequest;
+use OCP\BackgroundJob\IJobList;
+use OCA\FileListFinder\BackgroundJob\FileListProcessor;
 
 
 class UserController extends Controller {
