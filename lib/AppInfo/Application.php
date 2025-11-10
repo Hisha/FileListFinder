@@ -16,18 +16,21 @@ class Application extends App implements IBootstrap {
     }
 
     public function register(IRegistrationContext $context): void {
-    // Register controller service for dependency injection
-    $context->registerService(UserController::class, function($c) {
-        return new UserController(
-            'filelistfinder',
-            $c->get(\OCP\IRequest::class),
-            $c->get(\OCP\ILogger::class),
-            $c->get(\OCP\BackgroundJob\IJobList::class)
-        );
-    });
-}
+        // ✅ Register the UserController (for dependency injection)
+        $context->registerService(UserController::class, function($c) {
+            return new UserController(
+                'filelistfinder',
+                $c->get(\OCP\IRequest::class),
+                $c->get(\OCP\ILogger::class),
+                $c->get(\OCP\BackgroundJob\IJobList::class)
+            );
+        });
+
+        // ✅ Tell Nextcloud to load your appinfo/routes.php file
+        $context->registerRoutes(__DIR__ . '/../../appinfo/routes.php');
+    }
 
     public function boot(IBootContext $context): void {
-        error_log('[FileListFinder] App booted (via error_log)');
+        // You don’t need to register jobs here anymore
     }
 }
