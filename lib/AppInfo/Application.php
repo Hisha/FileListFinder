@@ -28,6 +28,6 @@ class Application extends App implements IBootstrap {
 }
 
     public function boot(IBootContext $context): void {
-        $logger->info('[FileListFinder] App booted');
+        error_log('[FileListFinder] App booted (via error_log)');
     }
 }
