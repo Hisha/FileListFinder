@@ -28,8 +28,6 @@ class Application extends App implements IBootstrap {
 }
 
     public function boot(IBootContext $context): void {
-        /** @var \OCP\ILogger $logger */
-        $logger = $context->getAppContainer()->get(\OCP\ILogger::class);
         $logger->info('[FileListFinder] App booted');
     }
 }
