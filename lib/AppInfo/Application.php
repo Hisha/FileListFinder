@@ -16,17 +16,22 @@ class Application extends App implements IBootstrap {
     }
 
     public function register(IRegistrationContext $context): void {
-    $context->registerService(UserController::class, function($c) {
-        return new \OCA\FileListFinder\Controller\UserController(
-            'filelistfinder',
-            $c->get(\OCP\IRequest::class),
-            $c->get(\OCP\ILogger::class),
-            $c->get(\OCP\BackgroundJob\IJobList::class)
-        );
-    });
-}
+        // Register UserController manually (for dependency injection)
+        $context->registerService(UserController::class, function($c) {
+            return new UserController(
+                'filelistfinder',
+                $c->get(\OCP\IRequest::class),
+                $c->get(\OCP\ILogger::class),
+                $c->get(\OCP\BackgroundJob\IJobList::class)
+            );
+        });
+
+        // Register your routes file
+        $context->registerRoutes(__DIR__ . '/../../appinfo/routes.php');
+    }
 
     public function boot(IBootContext $context): void {
-        $jobList = $context->getAppContainer()->get(IJobList::class);
+        // No longer needed to register job here — queued jobs are submitted by controllers
+        \OC::$server->getLogger()->info('[FileListFinder] App booted');
     }
 }
